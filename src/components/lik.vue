@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations} from 'vuex'
+import { mapState} from 'vuex'
 import { TweenLite } from 'gsap';
 export default{
   
@@ -23,20 +23,17 @@ computed:{
 } ,
   
 methods: {
-  ...mapMutations([
-   'ADD_VALUE'
-  ]),
+
   move: function(){
+    
     var logo = document.getElementById("kvadrat");
     var tn = TweenLite.to(logo, 2, {left:"1300px", onUpdate:myFunction});
-function myFunction()
-{
-this.ADD_VALUE(tn.progress())
 
+function myFunction(){
+this.$store.dispatch('add_value',tn.progress())
 }
   }
-}
-}
+}}
 </script>
 
 <style >
